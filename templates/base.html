@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CypherTalk - {% block title %}Education Platform{% endblock %}</title>
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="{{ url_for('home') }}" class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span class="logo-text">C</span> 
+                <p>ypherTalk</p>
+            </a>
+            
+            <div class="nav-links">
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('resources') }}">Resources</a>
+                <a href="{{ url_for('mentors') }}">Mentors</a>
+                {% if 'user_id' in session %}
+                    <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                    <a href="{{ url_for('logout') }}" class="btn-logout">Logout</a>
+                    <span class="user-welcome">Welcome, {{ session['username'] }}</span>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="btn-login">Login</a>
+                    <a href="{{ url_for('register') }}" class="btn-register">Register</a>
+                {% endif %}
+            </div>
+            
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-graduation-cap"></i> CypherTalk</h3>
+                    <p>Free educational resources for all students.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="{{ url_for('home') }}">Home</a>
+                    <a href="{{ url_for('resources') }}">Resources</a>
+                    <a href="{{ url_for('pyq') }}">Previous Year Questions</a>
+                    <a href="{{ url_for('mentors') }}">Alumni Mentors</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow</h4>
+                    <p><i class="fas fa-envelope"></i> cyphertalk@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +91 8789805200</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CypherTalk. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

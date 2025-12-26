@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %}Study Notes - CypherTalk{% endblock %}
+
+{% block content %}
+<div class="notes-page">
+    <div class="container">
+        <div class="page-header">
+            <h1>Study Notes</h1>
+            <p>which you easily break complex concept</p>
+        </div>
+        
+        <div class="notes-categories">
+            <h2>Browse by Category</h2>
+            <div class="categories-grid">
+                <a href="#" class="category-card">
+                    <i class="fas fa-calculator"></i>
+                    <span>Mathematics</span>
+                </a>
+                <a href="#" class="category-card">
+                    <i class="fas fa-laptop-code"></i>
+                    <span>Computer Science</span>
+                </a>
+                <a href="#" class="category-card">
+                    <i class="fas fa-flask"></i>
+                    <span>Science</span>
+                </a>
+                <a href="#" class="category-card">
+                    <i class="fas fa-book"></i>
+                    <span>Engineering</span>
+                </a>
+                <a href="#" class="category-card">
+                    <i class="fas fa-vials"></i>
+                    <span>Biotechnology</span>
+                </a>
+                <a href="#" class="category-card">
+                    <i class="fas fa-tools"></i>
+                    <span>Mechanics</span>
+                </a>
+            </div>
+        </div>
+        
+        <div class="notes-list">
+            <h2>All Notes</h2>
+            <div class="notes-grid">
+                {% for note in notes %}
+                <div class="note-card">
+                    <div class="note-header">
+                        <div class="note-subject">{{ note.subject or 'General' }}</div>
+                        <div class="note-type">Notes</div>
+                    </div>
+                    <div class="note-body">
+                        <h3>{{ note.title }}</h3>
+                        <p>{{ note.description or 'Comprehensive study notes' }}</p>
+                        <div class="note-meta">
+                            <span><i class="fas fa-user"></i> Faculty</span>
+                            <span><i class="far fa-clock"></i> 2 hours ago</span>
+                            <span><i class="fas fa-download"></i> 150 downloads</span>
+                        </div>
+                    </div>
+                    <div class="note-actions">
+                        <a href="#" class="btn-preview">
+                            <i class="fas fa-eye"></i> Preview
+                        </a>
+                        <a href="#" class="btn-download">
+                            <i class="fas fa-download"></i> Download
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="notes-quality">
+            <h2>Why Our Notes Are Special</h2>
+            <div class="quality-features">
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Verified Content</h3>
+                    <p>All notes verified by subject experts</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-list-check"></i>
+                    <h3>Well Organized</h3>
+                    <p>Chapter-wise and topic-wise arrangement</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-image"></i>
+                    <h3>Diagrams & Examples</h3>
+                    <p>Includes diagrams and solved examples</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Mobile Friendly</h3>
+                    <p>Accessible on all devices</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contribute-notes">
+            <h3>Want to Contribute Notes?</h3>
+            <p>Share your notes and help thousands of students</p>
+            {% if 'user_id' in session %}
+                <a href="{{ url_for('dashboard') }}" class="btn-primary">
+                    <i class="fas fa-upload"></i> Upload Notes
+                </a>
+            {% else %}
+                <a href="{{ url_for('register') }}" class="btn-primary">
+                    <i class="fas fa-user-plus"></i> Register to Contribute
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

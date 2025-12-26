@@ -1,0 +1,137 @@
+
+
+{% extends "base.html" %}
+
+{% block title %}Resources - CypherTalk{% endblock %}
+
+{% block content %}
+<div class="resources-page">
+    <div class="container">
+        <div class="page-header">
+            <h1>Educational Resources</h1>
+            <p>Browse and download all available study materials</p>
+        </div>
+        
+        <form method="get" action="{{ url_for('resources') }}" class="filters">
+            <div class="filter-group">
+                <label>Resource Type:</label>
+                <select name="type" class="filter-select" onchange="this.form.submit()">
+                    <option value="all" {% if current_type == 'all' %}selected{% endif %}>All Types</option>
+                    <option value="pyq" {% if current_type == 'pyq' %}selected{% endif %}>PYQs</option>
+                    <option value="notes" {% if current_type == 'notes' %}selected{% endif %}>Notes</option>
+                    <option value="semester" {% if current_type == 'semester' %}selected{% endif %}>Semester Papers</option>
+                </select>
+            </div>
+
+           <div class="filter-group">
+                <label>Branch:</label>
+                <select name="branch" class="filter-select" onchange="this.form.submit()">
+                    <option value="all" {% if current_branch == 'all' %}selected{% endif %}>All Branches</option>
+                    <option value="cse" {% if current_branch == 'cse' %}selected{% endif %}>CSE</option>
+                    <option value="aiml" {% if current_branch == 'aiml' %}selected{% endif %}>Ai/ML</option>
+                    <option value="ece" {% if current_branch == 'ece' %}selected{% endif %}>ECE</option>
+                    <option value="electrical" {% if current_branch == 'electrical' %}selected{% endif %}>Electrical</option>
+                    <option value="civil" {% if current_branch == 'civil' %}selected{% endif %}>Civil</option>
+                    <option value="mechanical" {% if current_branch == 'mechanical' %}selected{% endif %}>Mechanical</option>
+                    <option value="biotech" {% if current_branch == 'biotech' %}selected{% endif %}>Biotech</option>
+                </select>
+            </div>
+            
+           <div class="filter-group">
+                <label>Semester:</label>
+                <select name="semester" class="filter-select" onchange="this.form.submit()">
+                    <option value="all" {% if current_semester == 'all' %}selected{% endif %}>All Semesters</option>
+                    {% for i in range(1, 9) %}
+                        <option value="{{ i }}" {% if current_semester == i|string %}selected{% endif %}>Semester {{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+        
+        <!-- Year filter - only visible for PYQs -->
+            {% if current_type == 'pyq' %}
+            <div class="filter-group">
+                <label>Year:</label>
+                <select name="year" class="filter-select" onchange="this.form.submit()">
+                    <option value="all" {% if current_year == 'all' %}selected{% endif %}>All Years</option>
+                    {% for year in range(2025, 2015, -1) %}
+                        <option value="{{ year }}" {% if current_year == year|string %}selected{% endif %}>{{ year }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            {% endif %}
+        </form>
+        
+        {% if resources %}
+<div class="resources-wrapper">
+    <!-- Single big card (80% width) -->
+    <div class="resources-card">
+        <h3 class="resources-card-title">All Resources</h3>
+
+        <div class="resources-list">
+            {% for resource in resources %}
+            <div class="resource-row">
+                <div class="resource-info">
+                    <span class="resource-type {{ resource.resource_type }}">
+                        {{ resource.resource_type|upper }}
+                    </span>
+                    <div class="resource-text">
+                        <h4>{{ resource.title }}</h4>
+                        <p>{{ resource.description or 'No description available' }}</p>
+                        <div class="resource-meta">
+                            {% if resource.semester %}
+                                <span><i class="fas fa-calendar-alt"></i> Sem {{ resource.semester }}</span>
+                            {% endif %}
+                            {% if resource.subject %}
+                                <span><i class="fas fa-book"></i> {{ resource.subject }}</span>
+                            {% endif %}
+                            {% if resource.year and resource.resource_type == 'pyq' %}
+                                <span><i class="fas fa-clock"></i> Year {{ resource.year }}</span>
+                            {% endif %}
+                            <span><i class="far fa-clock"></i> {{ resource.uploaded_at.strftime('%d %b %Y') }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resource-actions">
+                    <a href="{{ url_for('view_file', resource_id=resource.id) }}" 
+                       class="btn-view" target="_blank">
+                       <i class="fas fa-eye"></i> View
+                    </a>
+                    <a href="{{ url_for('download_file', resource_id=resource.id) }}" 
+                       class="btn-download">
+                       <i class="fas fa-download"></i> Download
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+        {% else %}
+        <div class="no-results">
+            <h3>No resources found</h3>
+            <p>Try adjusting your filters or <a href="{{ url_for('resources') }}">view all resources</a></p>
+        </div>
+        {% endif %}
+        
+        {% if 'user_id' in session %}
+        <div class="upload-section">
+            <h3>Share Your Resources</h3>
+            <p>Help other students by uploading study materials</p>
+            <div class="upload-btn-wrapper">
+                <a href="{{ url_for('dashboard') }}" class="btn-primary">
+                    <i class="fas fa-upload"></i> Upload Resource
+                </a>
+            </div>
+        </div>
+        {% else %}
+        <div class="login-prompt">
+            <h3>Want to download resources?</h3>
+            <p>Register for free to access all study materials</p>
+            <a href="{{ url_for('register') }}" class="btn-primary">Register Free</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

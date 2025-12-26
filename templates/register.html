@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Register - CypherTalk{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <h2>SignUp</h2>
+        <p class="auth-subtitle">Join 500+ students using CypherTalk</p>
+        
+        <form method="POST" action="{{ url_for('register') }}" class="auth-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required 
+                       placeholder="username">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required 
+                       placeholder="user@gmail.com">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required 
+                       placeholder="acb@#">
+            </div>
+            
+            <div class="terms">
+                <input type="checkbox" id="terms" required>
+                <label for="terms">I agree to the Terms & Conditions</label>
+            </div>
+            
+            <button type="submit" class="btn-primary btn-block">Create Account</button>
+        </form>
+        
+        <div class="auth-links">
+            <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+        </div>
+        
+        <div class="free-features">
+            <h4><i class="fas fa-gift"></i> Everything is FREE:</h4>
+            <div class="features-grid">
+                <div class="feature">
+                    <i class="fas fa-file-pdf"></i>
+                    <span>PYQs</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-book"></i>
+                    <span>Notes</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-user-graduate"></i>
+                    <span>Mentorship</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-video"></i>
+                    <span>Lectures</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

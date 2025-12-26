@@ -1,0 +1,539 @@
+
+/* PYQs Page - Light Animated Theme */
+.pyq-page {
+    min-height: 100vh;
+  background:radial-gradient(circle at center,#181f2c 0,#1b1b1b 100%);
+    padding: 40px 0;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Floating Background Elements */
+.pyq-page::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(45deg, rgba(28, 32, 46, 0.1) 0%, rgba(30, 30, 31, 0.05) 100%);
+    border-radius: 50%;
+    filter: blur(40px);
+    animation: float 20s infinite ease-in-out;
+    z-index: 0;
+}
+
+.pyq-page::after {
+    content: '';
+    position: absolute;
+    bottom: 10%;
+    right: 5%;
+    width: 250px;
+    height: 250px;
+    background: linear-gradient(45deg, rgba(255, 107, 107, 0.1) 0%, rgba(255, 107, 107, 0.05) 100%);
+    border-radius: 50%;
+    filter: blur(40px);
+    animation: float 25s infinite ease-in-out reverse;
+    z-index: 0;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    33% {
+        transform: translateY(-20px) rotate(120deg);
+    }
+    66% {
+        transform: translateY(20px) rotate(240deg);
+    }
+}
+
+/* Container */
+.pyq-page .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Page Header */
+.page-header {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+    padding-top: 20px;
+}
+
+.page-header h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ffffff 0%, #c7c7c7 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+.page-header h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #0cf1de, transparent);
+    border-radius: 2px;
+    animation: linePulse 4s infinite ease-in-out;
+}
+
+@keyframes linePulse {
+    0%, 100% {
+        width: 100px;
+        opacity: 1;
+    }
+    50% {
+        width: 150px;
+        opacity: 0.7;
+    }
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    color: #f9f9fc;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Semester Section */
+.semester-section {
+    margin-bottom: 60px;
+}
+
+.semester-section h2 {
+    font-size: 2rem;
+    color: #ada6a6;
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.semester-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #4A6FFF, #8B5CF6);
+    border-radius: 2px;
+}
+
+/* Semester Grid */
+.semester-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 50px;
+    margin-top: 40px;
+}
+
+.semester-card {
+    background: whitesmoke;
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px 20px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    border: 2px solid transparent;
+    box-shadow: 0 10px 30px rgba(89, 192, 240, 0.1);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.semester-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(219, 216, 216, 0.4), transparent);
+    transition: left 0.7s ease;
+    z-index: -1;
+}
+
+.semester-card:hover::before {
+    left: 100%;
+}
+
+.semester-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    border-color: #2473eb;
+    box-shadow: 0 20px 40px rgba(221, 222, 224, 0.2);
+}
+
+.semester-number {
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #2147e2 0%, #53359b 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 10px;
+}
+
+.subject-count {
+    font-size: 1rem;
+    color: #0a0a0a;
+    background: rgba(26, 139, 115, 0.1);
+    padding: 6px 15px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+/* Recent PYQs Section */
+.recent-pyqs {
+    margin-bottom: 60px;
+}
+
+.recent-pyqs h2 {
+    font-size: 2rem;
+    color: #aca9a9;
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.recent-pyqs h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #4A6FFF, #8B5CF6);
+    border-radius: 2px;
+}
+
+/* PYQ Table */
+.pyq-table {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(74, 111, 255, 0.1);
+    animation: tableFadeIn 0.8s ease-out;
+}
+
+@keyframes tableFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.table-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+    background: linear-gradient(135deg, #4A6FFF 0%, #8B5CF6 100%);
+    color: rgb(46, 45, 45);
+    padding: 20px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.table-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+    padding: 20px;
+    border-bottom: 1px solid rgba(74, 111, 255, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.table-row:last-child {
+    border-bottom: none;
+}
+
+.table-row:hover {
+    background: rgba(74, 111, 255, 0.03);
+    transform: translateX(10px);
+    box-shadow: -5px 0 15px rgba(74, 111, 255, 0.1);
+}
+
+.table-row > div {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+
+/* Button Styles */
+.btn-download-small {
+    background: linear-gradient(135deg, #4A6FFF 0%, #8B5CF6 100%);
+    color: rgb(31, 30, 30);
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-download-small::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-download-small:hover::before {
+    left: 100%;
+}
+
+.btn-download-small:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(74, 111, 255, 0.3);
+}
+
+.btn-login-small {
+    background: linear-gradient(135deg, #FF6B6B 0%, #FFA36C 100%);
+    color: rgb(22, 22, 22);
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-login-small::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-login-small:hover::before {
+    left: 100%;
+}
+
+.btn-login-small:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+}
+
+/* Benefits Section */
+.pyq-benefits {
+    margin-top: 60px;
+}
+
+.pyq-benefits h2 {
+    font-size: 2rem;
+    color: #aca9a9;
+    margin-bottom: 40px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.pyq-benefits h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #4A6FFF, #8B5CF6);
+    border-radius: 2px;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.benefit {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+    border: 2px solid transparent;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.benefit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(74, 111, 255, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.benefit:hover::before {
+    opacity: 1;
+}
+
+.benefit:hover {
+    transform: translateY(-10px);
+    border-color: #4A6FFF;
+    box-shadow: 0 25px 50px rgba(74, 111, 255, 0.15);
+}
+
+.benefit i {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #4A6FFF 0%, #8B5CF6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: block;
+}
+
+.benefit h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.benefit p {
+    color: #666;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .page-header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .semester-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .table-header,
+    .table-row {
+        grid-template-columns: 1fr;
+        padding: 15px;
+    }
+    
+    .table-header > div,
+    .table-row > div {
+        padding: 5px 0;
+        margin-bottom: 5px;
+    }
+    
+    .table-header > div:not(:first-child),
+    .table-row > div:not(:first-child) {
+        border-top: 1px solid rgba(74, 111, 255, 0.1);
+        padding-top: 10px;
+    }
+    
+    .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .semester-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .semester-card {
+        padding: 25px 15px;
+    }
+    
+    .semester-number {
+        font-size: 1.5rem;
+    }
+    
+    .page-header h1 {
+        font-size: 2rem;
+    }
+    
+    .page-header p {
+        font-size: 1rem;
+    }
+}
+
+/* Loading Animation for Cards */
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.semester-card {
+    animation: cardAppear 0.6s ease-out;
+    animation-fill-mode: both;
+}
+
+.semester-card:nth-child(2) { animation-delay: 0.1s; }
+.semester-card:nth-child(3) { animation-delay: 0.2s; }
+.semester-card:nth-child(4) { animation-delay: 0.3s; }
+.semester-card:nth-child(5) { animation-delay: 0.4s; }
+.semester-card:nth-child(6) { animation-delay: 0.5s; }
+.semester-card:nth-child(7) { animation-delay: 0.6s; }
+.semester-card:nth-child(8) { animation-delay: 0.7s; }
+
+.benefit {
+    animation: cardAppear 0.6s ease-out;
+    animation-fill-mode: both;
+}
+
+.benefit:nth-child(2) { animation-delay: 0.1s; }
+.benefit:nth-child(3) { animation-delay: 0.2s; }
+.benefit:nth-child(4) { animation-delay: 0.3s; }

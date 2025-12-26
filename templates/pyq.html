@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}PYQs - CypherTalk{% endblock %}
+
+{% block content %}
+<div class="pyq-page">
+    <div class="container">
+        <div class="page-header">
+            <h1>Previous Year Questions</h1>
+            <p>Access question papers from previous years with solutions</p>
+        </div>
+        
+        <div class="semester-section">
+            <h2>Select Your Semester</h2>
+            <div class="semester-grid">
+                {% for i in range(1, 9) %}
+                <a href="https://drive.google.com/file/d/162oJ40nGwSJEaGAS2B_rtdg3G5j2smWy/view?usp=sharing' ~ i ~ '.pdf' )}}" 
+                class="semester-card" target="_blank">
+                    <div class="semester-number">Semester {{ i }}</div>
+                    <div class="subject-count">4+ Papers</div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="recent-pyqs">
+            <h2>Recently Added PYQs</h2>
+            <div class="pyq-table">
+                <div class="table-header">
+                    <div>Subject</div>
+                    <div>Year</div>
+                    <div>Semester</div>
+                    <div>Format</div>
+                    <div>Action</div>
+                </div>
+                
+                {% for pyq in pyqs %}
+                <div class="table-row">
+                    <div>{{ pyq.subject or 'General' }}</div>
+                    <div>{{ pyq.year or '2025' }}</div>
+                    <div>Sem {{ pyq.semester or 'All' }}</div>
+                    <div>PDF</div>
+                    <div>
+                        {% if 'user_id' in session %}
+                            <a href="#" class="btn-download-small">Download</a>
+                        {% else %}
+                            <a href="{{ url_for('login') }}" class="btn-login-small">Login to Download</a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="pyq-benefits">
+            <h2>Why Practice PYQs?</h2>
+            <div class="benefits-grid">
+                <div class="benefit">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>Understand Pattern</h3>
+                    <p>Get familiar with examination pattern and marking scheme!!</p>
+                </div>
+                <div class="benefit">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Identify Important Topics</h3>
+                    <p>Know which topics are frequently asked</p>
+                </div>
+                <div class="benefit">
+                    <i class="fas fa-clock"></i>
+                    <h3>Time Management</h3>
+                    <p>Practice solving papers within time limits</p>
+                </div>
+                <div class="benefit">
+                    <i class="fas fa-medal"></i>
+                    <h3>Boost Confidence</h3>
+                    <p>Increase your confidence before exams</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

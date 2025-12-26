@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block title %}Home -CypherTalk{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Welcome to  <span class="hero-content-text">CypherTalk</span> </h1>
+            <p class="subtitle">Your Ultimate Education Platform</p>
+            <p class="description">
+                Access Previous Year Questions (PYQs), Semester Papers, Notes, 
+                and connect with Alumni Mentors - All for FREE!
+            </p>
+            <div class="hero-buttons">
+                {% if 'user_id' not in session %}
+                    <a href="{{ url_for('register') }}" class="btn-primary">Get Started Free</a>
+                    <a href="{{ url_for('login') }}" class="btn-secondary">Login</a>
+                {% else %}
+                    <a href="{{ url_for('dashboard') }}" class="btn-primary">Go to Dashboard</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <div class="container">
+        <h2 class="section-title">What We Offer</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <h3>Previous Year Questions</h3>
+                <p>Access PYQs from last 5+ years for all semesters and subjects.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <h3>Semester Papers</h3>
+                <p>Complete collection of semester examination papers with solutions.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Alumni Mentors</h3>
+                <p>Connect with successful alumni for guidance and career advice.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-sticky-note"></i>
+                </div>
+                <h3>Study Notes</h3>
+                <p>Comprehensive notes prepared by toppers and professors.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-lock-open"></i>
+                </div>
+                <h3>Free Access</h3>
+                <p>All resources available for free to registered students.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <h3>Learning Resources</h3>
+                <p>Video lectures, tutorials, and interactive learning materials.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stats">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>5000+</h3>
+                <p>PYQ Papers</p>
+            </div>
+            <div class="stat-item">
+                <h3>100+</h3>
+                <p>Alumni Mentors</p>
+            </div>
+            <div class="stat-item">
+                <h3>10,000+</h3>
+                <p>Study Notes</p>
+            </div>
+            <div class="stat-item">
+                <h3>50,000+</h3>
+                <p>Registered Students</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="how-it-works">
+    <div class="container">
+        <h2 class="section-title">How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Register Free</h3>
+                <p>Create your free account in 30 seconds</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Access Resources</h3>
+                <p>Browse and download PYQs, notes, and papers</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Connect with Mentors</h3>
+                <p>Get guidance from successful alumni</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Excel Academically</h3>
+                <p>Improve your grades with our resources</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Mentors - CypherTalk{% endblock %}
+
+{% block content %}
+<div class="mentors-page">
+    <div class="container">
+        <div class="page-header">
+            <h1>Alumni Mentors</h1>
+            <p>Connect with successful alumni for guidance and career advice</p>
+        </div>
+        
+        <div class="mentors-intro">
+            <h2>Get Personalized Guidance</h2>
+            <p>Our alumni mentors are here to help you with:</p>
+            <div class="guidance-points">
+                <span><i class="fas fa-check"></i> Career Advice</span>
+                <span><i class="fas fa-check"></i> Interview Preparation</span>
+                <span><i class="fas fa-check"></i> Subject Guidance</span>
+                <span><i class="fas fa-check"></i> Project Ideas</span>
+                <span><i class="fas fa-check"></i> Study Tips</span>
+            </div>
+        </div>
+        
+        <div class="mentors-grid">
+            {% for mentor in mentors %}
+            <div class="mentor-card">
+                <div class="mentor-avatar">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <div class="mentor-info">
+                    <h3>{{ mentor.name }}</h3>
+                    <p class="mentor-position">{{ mentor.position }} at {{ mentor.company }}</p>
+                    <p class="mentor-expertise"><i class="fas fa-star"></i> {{ mentor.expertise }}</p>
+                    <p class="mentor-bio">{{ mentor.bio or 'Experienced professional ready to help students.' }}</p>
+                    <div class="mentor-meta">
+                        <span><i class="fas fa-graduation-cap"></i> Batch {{ mentor.graduation_year }}</span>
+                        {% if mentor.is_available %}
+                            <span class="available"><i class="fas fa-circle"></i> Available</span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="mentor-actions">
+                    {% if 'user_id' in session %}
+                        <a href="#" class="btn-connect">
+                            <i class="fas fa-comment"></i> Connect
+                        </a>
+                        <a href="mailto:{{ mentor.email }}" class="btn-email">
+                            <i class="fas fa-envelope"></i> Email
+                        </a>
+                    {% else %}
+                        <a href="{{ url_for('login') }}" class="btn-login">
+                            <i class="fas fa-sign-in-alt"></i> Login to Connect
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        {% if 'user_id' in session %}
+        <div class="request-mentor">
+            <h3>Can't find the right mentor?</h3>
+            <p>Submit a request and we'll connect you with suitable alumni</p>
+            <button class="btn-primary">Request Specific Mentor</button>
+        </div>
+        {% endif %}
+        
+        <div class="become-mentor">
+            <div class="mentor-cta">
+                <h2>Are you an Alumni?</h2>
+                <p>Join our mentor community and help current students succeed</p>
+                <a href="#" class="btn-secondary">Become a Mentor</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
